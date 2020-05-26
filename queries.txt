@@ -32,7 +32,7 @@ WHERE `name` LIKE 'D%';
 ******
 5: Calcola il totale degli ordini accepted:
 
-SELECT COUNT(`id`) 
+SELECT COUNT(`id`) AS 'payment_accepted_total'
 FROM `pagamenti` 
 WHERE `status` = 'accepted';
 
@@ -40,7 +40,7 @@ WHERE `status` = 'accepted';
 ******
 6: Qual è il prezzo massimo pagato?
 
-SELECT MAX(`price`)
+SELECT MAX(`price`) AS 'price_highest'
 FROM `pagamenti` 
 WHERE `status` = 'accepted';
 
@@ -56,5 +56,5 @@ WHERE YEAR(`date_of_birth`) = '1975' AND `document_type` = 'Driver License'
 ******
 8: Quanti posti letto ha l’hotel in totale?
 
-SELECT SUM(`beds`)
+SELECT SUM(`beds`) AS 'beds_total'
 FROM `stanze`;
