@@ -40,11 +40,9 @@ WHERE `status` = 'accepted';
 ******
 6: Qual è il prezzo massimo pagato?
 
-SELECT *
+SELECT MAX(`price`)
 FROM `pagamenti` 
-WHERE `status` = 'accepted'
-ORDER BY `price` DESC
-LIMIT 1;
+WHERE `status` = 'accepted';
 
 
 ******
