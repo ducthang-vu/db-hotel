@@ -59,7 +59,7 @@ Bonus: Group by
 *****
 7: Conta gli ospiti raggruppandoli per anno di nascita
 
-SELECT YEAR(date_of_birth) AS 'birth_year', COUNT(`id`) AS 'records'
+SELECT YEAR(`date_of_birth`) AS 'birth_year', COUNT(`id`) AS 'records'
 FROM `ospiti` 
 GROUP BY YEAR(`date_of_birth`);
 
