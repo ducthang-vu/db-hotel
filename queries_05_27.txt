@@ -1,0 +1,57 @@
+1: Come si chiamano gli ospiti che hanno fatto più di due prenotazioni?
+
+SELECT `ospite_id`, `ospiti`.`name`, `ospiti`.`lastname`, COUNT(`ospite_id`) AS 'tot_booking_id' 
+FROM `prenotazioni_has_ospiti` 
+INNER JOIN `ospiti` 
+ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id` 
+GROUP BY `ospite_id` 
+HAVING COUNT(`ospite_id`) > 2
+
+
+*****
+2: Stampare tutti gli ospiti per ogni prenotazione
+
+SELECT `prenotazione_id`, `ospiti`.`id`, `ospiti`.`name`, `ospiti`.`lastname`
+FROM `prenotazioni_has_ospiti`
+INNER JOIN `ospiti`
+ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`;
+
+
+*****
+3: Stampare Nome, Cognome, Prezzo e Pagante per tutte le prenotazioni fatte a Maggio 2018
+
+
+
+
+*****
+4: Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
+
+
+
+
+*****
+5: Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
+
+
+
+
+*****
+6: Salvare le query che ritenete corrette (una per ogni punto elencato sopra) in un file da versionare sempre nella repo usata anche per l’esercizio di ieri (db-hotel). Create un nuovo file per tenere separate le queries di ieri a quelle che farete oggi.
+
+
+
+
+*****
+Bonus: Group by
+*****
+7: Conta gli ospiti raggruppandoli per anno di nascita
+
+
+
+*****
+8: Somma i prezzi dei pagamenti raggruppandoli per status
+
+
+
+*****
+9: Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?
