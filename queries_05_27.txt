@@ -5,7 +5,7 @@ FROM `prenotazioni_has_ospiti`
 INNER JOIN `ospiti` 
 ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id` 
 GROUP BY `ospite_id` 
-HAVING COUNT(`ospite_id`) > 2
+HAVING COUNT(`ospite_id`) > 2;
 
 
 *****
@@ -26,32 +26,45 @@ ON `prenotazioni_has_ospiti`.`ospite_id` = `ospiti`.`id`;
 *****
 4: Fai la somma di tutti i prezzi delle prenotazioni per le stanze del primo piano
 
+SELECT SUM(`pagamenti`.`price`)
+FROM `prenotazioni`
+INNER JOIN `stanze`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id` AND  `stanze`.`floor` = 1
+INNER JOIN `pagamenti`
+ON `pagamenti`.`prenotazione_id` = `prenotazioni`.`id`;
 
 
 
 *****
 5: Le stanze sono state tutte prenotate almeno una volta? (Visualizzare le stanze non ancora prenotate)
 
+SELECT `stanze`.`room_number`
+FROM `stanze`
+LEFT JOIN `prenotazioni`
+ON `stanze`.`id` = `prenotazioni`.`stanza_id`
+WHERE `prenotazioni`.`stanza_id` IS NULL;
 
 
-
-*****
-6: Salvare le query che ritenete corrette (una per ogni punto elencato sopra) in un file da versionare sempre nella repo usata anche per l’esercizio di ieri (db-hotel). Create un nuovo file per tenere separate le queries di ieri a quelle che farete oggi.
-
-
-
-
-*****
+**********
+**********
 Bonus: Group by
 *****
 7: Conta gli ospiti raggruppandoli per anno di nascita
 
+SELECT YEAR(date_of_birth) AS 'birth_year', COUNT(`id`) AS 'records'
+FROM `ospiti` 
+GROUP BY YEAR(`date_of_birth`);
 
 
 *****
 8: Somma i prezzi dei pagamenti raggruppandoli per status
 
+SELECT `status`, SUM(`price`) AS 'total'
+FROM `pagamenti`
+GROUP BY `status`;
+
 
 
 *****
 9: Quante prenotazioni ha fatto l’ospite che ha fatto più prenotazioni?
+
